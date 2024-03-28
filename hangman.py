@@ -1,72 +1,12 @@
 
 import random
-
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''']
-
-
+from hangman_art import stages, logo
+from hangman_words import word_list
 #Step 1
-word_list = ["ardvark", "baboon", "camel"]
+
 
 # Randomly choose a word from the word_list and assign it to the variable called chosen_world
 chosen_word = random.choice(word_list)
-
-## Testing Code
-print(f"Pssst, the solution is {chosen_word}")
 
 
 #Create a variable called 'lives' to keep track of the number of lives left. 
@@ -86,8 +26,18 @@ for letter in chosen_word:
 
 end_of_game = False
 
+# print logo
+print(logo)
+
+## Testing Code
+print(f"Pssst, the solution is {chosen_word}")
+
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
+
+    #If the user has entered a letter they've already guessed, print the letter and let them know.
+    if guess in display:
+        print(f"You've already correctly guessed '{guess}'. Guess a different letter.")
 
     #Loop through each position in the chosen_word;
     #If the letter at that position matches 'guess' then reveal that letter in the display at that position.
@@ -100,11 +50,13 @@ while not end_of_game:
     #Then reduce 'lives' by 1. 
     #If lives goes down to 0 then the game should stop and it should print "You lose."
     if guess not in chosen_word:
+        #If the letter is not in the chosen_word, print out the letter and let them know it's not in the word.
+        print(f"You guessed '{guess}', that's not in the word. You lose a life.")
         lives-=1
     
     if lives == 0:
         end_of_game = True
-        print("You lose")
+        print("Game over! You lost the game!")
     
     #Join all the elements in the list and turn it into a String.
     print(f"{' '.join(display)}")
@@ -118,4 +70,5 @@ while not end_of_game:
     
     #print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
     print(stages[lives])
+
      
