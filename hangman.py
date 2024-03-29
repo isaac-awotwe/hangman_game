@@ -1,37 +1,30 @@
+#!/usr/bin/python3
 
+# Import packages
 import random
 from hangman_art import stages, logo
 from hangman_words import word_list
-#Step 1
-
 
 # Randomly choose a word from the word_list and assign it to the variable called chosen_world
 chosen_word = random.choice(word_list)
 
-
 #Create a variable called 'lives' to keep track of the number of lives left. 
-#Set 'lives' to equal 6.
 lives = 6
+
+# Create a variable that signifies end of game
+end_of_game = False
 
 #Create an empty List called display.
 #For each letter in the chosen_word, add a "_" to 'display'.
 display = []
 for letter in chosen_word:
     display.append("_")
-#print(display)
-# Ask the  user to guess a latter and assign their answer to the variable called guess. Make guess lowercase.
     
-# Use a while loop to let the user guess again.
-#The loop should only stop once the user has guessed all the letters in the chosen_word and 'display has not more blanks ("_")
-
-end_of_game = False
-
-# print logo
+# print hangman logo
 print(logo)
 
-## Testing Code
-print(f"Pssst, the solution is {chosen_word}")
-
+# Use a while loop to let the user guess again.
+#The loop should only stop once the user has guessed all the letters in the chosen_word and 'display has not more blanks ("_")
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
 
@@ -45,7 +38,6 @@ while not end_of_game:
         if chosen_word[i] == guess:
             display[i] = guess
 
-
     #If guess is not a letter in the chosen_word,
     #Then reduce 'lives' by 1. 
     #If lives goes down to 0 then the game should stop and it should print "You lose."
@@ -56,7 +48,7 @@ while not end_of_game:
     
     if lives == 0:
         end_of_game = True
-        print("Game over! You lost the game!")
+        print("Game over! You lost!")
     
     #Join all the elements in the list and turn it into a String.
     print(f"{' '.join(display)}")
