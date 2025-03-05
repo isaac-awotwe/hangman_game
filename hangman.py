@@ -64,7 +64,7 @@ while not end_of_game:
     #print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
     print(stages[lives])
 
-    # print the numbe rof lives left
+    # print the number of lives left
     print(f"****************************{lives}/6 LIVES LEFT****************************")
 
      
