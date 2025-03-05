@@ -24,8 +24,9 @@ for letter in chosen_word:
 print(logo)
 
 # Use a while loop to let the user guess again.
-#The loop should only stop once the user has guessed all the letters in the chosen_word and 'display has not more blanks ("_")
+# The loop should only stop once the user has guessed all the letters in the chosen_word and 'display has not more blanks ("_")
 while not end_of_game:
+    print(f"Word to guess: {''.join(display)}")
     guess = input("Guess a letter: ").lower()
 
     #If the user has entered a letter they've already guessed, print the letter and let them know.
@@ -62,5 +63,8 @@ while not end_of_game:
     
     #print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
     print(stages[lives])
+
+    # print the numbe rof lives left
+    print(f"****************************{lives}/6 LIVES LEFT****************************")
 
      
